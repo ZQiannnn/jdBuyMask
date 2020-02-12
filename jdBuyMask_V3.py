@@ -65,6 +65,7 @@ submit_captcha_rid = ''
 submit_captcha_text = ''
 encryptClientInfo = ''
 submit_Time = 0
+cartEmpty = False
 session = requests.session()
 checksession = requests.session()
 session.headers = {
@@ -436,9 +437,13 @@ def V3AutoBuy(inStockSkuid):
         global submit_Time
         submit_Time = int(time.time() * 1000)
         logger.info('[%s]类型口罩有货啦!马上下单', skuId)
+        global cartEmpty
+        if cartEmpty:
+            add_item_to_cart(skuId)
         skuidUrl = 'https://item.jd.com/' + skuId + '.html'
         if buyMask(skuId):
             message.send(skuidUrl, True)
+            cartEmpty = True
             # sys.exit(1)
         else:
             if item_removed(skuId):
@@ -563,12 +568,14 @@ while (1):
             select_all_cart_item()
             remove_item()
             add_item_to_cart(skuId)
+            cartEmpty = False
         # 检测配置文件修改
         if int(time.time()) - configTime >= 600:
             nowMd5 = getconfigMd5()
             if not nowMd5 == configMd5:
                 logger.info('配置文件修改，重新读取文件')
                 getconfig()
+                flag = 0
         logger.info('第' + str(flag) + '次 ')
         flag += 1
         # 检查库存模块
