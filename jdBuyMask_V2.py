@@ -135,7 +135,7 @@ def getUsername():
     resultText = resultText.replace('jQuery339448(', '')
     resultText = resultText.replace(')', '')
     usernameJson = json.loads(resultText)
-    logger.info('登录账号名称[%s]', usernameJson['nick'] + '------' + os.getenv('ACCOUNT'))
+    logger.info('登录账号名称[%s]', usernameJson['nick'] + '------' + os.getenv('ACCOUNT', ''))
 
 
 '''

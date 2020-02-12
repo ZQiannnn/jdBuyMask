@@ -21,7 +21,7 @@ class message(object):
     def send(self, desp='', isOrder=False):
         desp = str(desp)
         if isOrder:
-            msg = desp + ' 类型口罩，已经下单了。24小时内付款' + '  --------  ' + os.getenv('ACCOUNT')
+            msg = desp + ' 类型口罩，已经下单了。24小时内付款' + '  --------  ' + os.getenv('ACCOUNT', '')
         else:
             # msg = desp + ' 类型口罩，下单失败了'
             return
@@ -31,7 +31,7 @@ class message(object):
             sendWechat(sc_key=self.sc_key, desp=msg)
 
     def sendAny(self, desp=''):
-        desp = str(desp) + '  --------  ' + os.getenv('ACCOUNT')
+        desp = str(desp) + '  --------  ' + os.getenv('ACCOUNT', '')
         msg = desp
         if self.messageType == '1':
             sendMail(self.mail, msg)
