@@ -1,0 +1,23 @@
+version: '3'
+services:
+  v3-z1:
+    image: zqiannnn/jd:V3
+    restart: always
+    volumes:
+      - ./config-z1.ini:/app/config/configDemo.ini
+    environment:
+      ACCOUNT: Z1
+  v3-l1:
+    image: zqiannnn/jd:V3
+    restart: always
+    volumes:
+      - ./config-l1.ini:/app/config/configDemo.ini
+    environment:
+      ACCOUNT: L1
+  v2-z2:
+    image: zqiannnn/jd:V2
+    restart: always
+    volumes:
+      - ./config-z2.ini:/app/config/configDemo.ini
+    environment:
+      ACCOUNT: Z2

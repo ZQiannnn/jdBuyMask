@@ -1,7 +1,5 @@
 FROM python:3.7-slim
 
-#USER root
-
 WORKDIR /app
 
 COPY  . /app
@@ -10,4 +8,4 @@ RUN pip install -r requirements.txt -i https://mirrors.ustc.edu.cn/pypi/web/simp
 
 VOLUME /app/config
 
-ENTRYPOINT ["python","jdBuyMask_V2.py"]
+ENTRYPOINT ["python","jdBuyMask_V3.py"]

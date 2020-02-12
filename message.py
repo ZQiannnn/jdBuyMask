@@ -1,4 +1,5 @@
 # -*- encoding=utf8 -*-
+import os
 from jdEmail import sendMail
 from wechat_ftqq import sendWechat
 
@@ -20,16 +21,17 @@ class message(object):
     def send(self, desp='', isOrder=False):
         desp = str(desp)
         if isOrder:
-            msg = desp + ' 类型口罩，已经下单了。24小时内付款'
+            msg = desp + ' 类型口罩，已经下单了。24小时内付款' + '  --------  ' + os.getenv('ACCOUNT')
         else:
-            msg = desp + ' 类型口罩，下单失败了'
+            # msg = desp + ' 类型口罩，下单失败了'
+            return
         if self.messageType == '1':
             sendMail(self.mail, msg)
         if self.messageType == '2':
             sendWechat(sc_key=self.sc_key, desp=msg)
 
     def sendAny(self, desp=''):
-        desp = str(desp)
+        desp = str(desp) + '  --------  ' + os.getenv('ACCOUNT')
         msg = desp
         if self.messageType == '1':
             sendMail(self.mail, msg)

@@ -102,7 +102,7 @@ def submit_order(session, risk_control, sku_id, skuids, submit_Time, encryptClie
         "Connection": "keep-alive",
         'Host': 'trade.jd.com',
     }
-    for count in range(1, 3):
+    for count in range(1, 4):
         logger.info('第[%s/%s]次尝试提交订单', count, 3)
         try:
             if is_Submit_captcha:
